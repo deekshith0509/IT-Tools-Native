@@ -80,13 +80,30 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 For a release build, sign it and `./gradlew assembleRelease` (R8/minify is off by
 default; see [app/proguard-rules.pro](app/proguard-rules.pro) before enabling it).
 
-## CI
+## CI / Releases
 
-- [.github/workflows/build.yml](.github/workflows/build.yml) — portable workflow
-  for when this folder is its own repository.
-- In the current monorepo, the root-level
-  `.github/workflows/it-tools-android.yml` builds this subproject and uploads the
-  APK as an artifact.
+Two GitHub Actions workflows:
+
+- [.github/workflows/build.yml](.github/workflows/build.yml) — runs on every
+  push / PR, builds the debug APK and uploads it as a **build artifact**
+  (temporary, on the Actions run page; for verifying the build, not for users).
+- [.github/workflows/release.yml](.github/workflows/release.yml) — **tag-driven
+  release**. Pushing a version tag builds the APK and publishes a permanent
+  **GitHub Release** with the binary attached:
+
+  ```bash
+  git tag v1.1.0
+  git push origin v1.1.0
+  ```
+
+  (Or trigger it manually from the Actions tab → *Run workflow* and type the
+  version.) The result appears under the repo's **Releases** section.
+
+`release.yml` is intentionally generic — to reuse it in another single-module
+Gradle Android project, copy it over and adjust only the two lines marked
+`PROJECT-SPECIFIC` (the Gradle task and the APK path). It builds `assembleDebug`
+(debug-signed, installable) by default; switch to `assembleRelease` once you've
+configured signing.
 
 ## Notes on the vendored bundle
 
