@@ -1,0 +1,9 @@
+<resources>
+    <!-- it-tools brand green -->
+    <color name="brand">#18A058</color>
+    <color name="brand_dark">#0F7C42</color>
+    <color name="splash_background">#1E1E2A</color>
+    <color name="ic_launcher_background">#1E1E2A</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+</resources>

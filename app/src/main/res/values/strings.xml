@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">IT-Tools</string>
+    <string name="home">Home</string>
+    <string name="reload">Reload</string>
+    <string name="about">About</string>
+    <string name="system_info">System info</string>
+    <string name="open_source">Open it-tools.tech</string>
+    <string name="no_connection">This tool needs network access, which is unavailable offline.</string>
+</resources>
